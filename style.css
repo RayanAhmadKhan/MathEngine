@@ -1,0 +1,99 @@
+body {
+	font-family: Arial, sans-serif;
+	background: #f4f6f8;
+	margin: 0;
+	padding: 24px;
+	color: #222;
+}
+
+input, button {
+	font: inherit;
+}
+
+#expr-input,
+#var-name,
+#var-value {
+	display: block;
+	width: 100%;
+	max-width: 360px;
+	box-sizing: border-box;
+	margin-bottom: 10px;
+	padding: 10px 12px;
+	border: 1px solid #c9d1d9;
+	border-radius: 8px;
+	background: #fff;
+}
+
+#output {
+	max-width: 360px;
+	margin: 12px 0 16px;
+	padding: 14px 12px;
+	background: #fff;
+	border: 1px solid #c9d1d9;
+	border-radius: 8px;
+	font-size: 1.4rem;
+	font-weight: bold;
+	text-align: right;
+}
+
+#buttons {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 8px;
+	max-width: 360px;
+	margin-bottom: 24px;
+}
+
+#buttons button,
+#add-var-btn {
+	padding: 10px;
+	border: none;
+	border-radius: 8px;
+	background: #e8edf3;
+	cursor: pointer;
+}
+
+#buttons button:hover,
+#add-var-btn:hover {
+	background: #d9e2ec;
+}
+
+#buttons button#equals-btn {
+	background: #4a90e2;
+	color: #fff;
+}
+
+#buttons button#clear-btn,
+#buttons button#backspace-btn {
+	background: #f2c94c;
+}
+
+#var-list,
+#history-list {
+	max-width: 360px;
+	margin-top: 8px;
+}
+
+#var-list div,
+#history-list div {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 10px;
+	margin-bottom: 6px;
+	background: #fff;
+	border: 1px solid #c9d1d9;
+	border-radius: 8px;
+}
+
+#history-list button {
+	border: none;
+	background: #ffdddd;
+	border-radius: 6px;
+	cursor: pointer;
+}
+
+h3 {
+	margin: 20px 0 10px;
+}
