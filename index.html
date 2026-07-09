@@ -7,6 +7,53 @@
 </head>
 <body>
 <!-- <p>Calculator</p> -->
+<input type="text" id="expr-input" placeholder="Type expression...">
+<div id="output">0</div>
+
+<div id="buttons">
+  <button data-val="7">7</button>
+  <button data-val="8">8</button>
+  <button data-val="9">9</button>
+  <button data-val="/">/</button>
+
+  <button data-val="4">4</button>
+  <button data-val="5">5</button>
+  <button data-val="6">6</button>
+  <button data-val="*">*</button>
+
+  <button data-val="1">1</button>
+  <button data-val="2">2</button>
+  <button data-val="3">3</button>
+  <button data-val="-">-</button>
+
+  <button data-val="0">0</button>
+  <button data-val=".">.</button>
+  <button data-val="+">+</button>
+  <button data-val="^">^</button>
+
+  <button data-val="(">(</button>
+  <button data-val=")">)</button>
+  <button data-val="sqrt(">√</button>
+  <button data-val="pi">π</button>
+
+  <button data-val="sin(">sin</button>
+  <button data-val="cos(">cos</button>
+  <button data-val="tan(">tan</button>
+  <button data-val="e">e</button>
+
+  <button id="clear-btn">C</button>
+  <button id="backspace-btn">⌫</button>
+  <button id="equals-btn">=</button>
+</div>
+
+<h3>Variables</h3>
+<input type="text" id="var-name" placeholder="name">
+<input type="text" id="var-value" placeholder="value">
+<button id="add-var-btn">Add Variable</button>
+<div id="var-list"></div>
+
+<h3>History</h3>
+<div id="history-list"></div> 
 
   <script src="script.js"></script>
 </body>
