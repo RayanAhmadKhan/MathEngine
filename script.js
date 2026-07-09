@@ -80,7 +80,7 @@ function evaluateExpression(expr) {
   let result;
   try {
     
-    result = Function(`"use strict"; return (${jsExpr})`)();
+    result = Function(`"use strict"; return (${jsExpr})`)(); 
   } catch (err) {
     throw new Error('Invalid expression');
   }
