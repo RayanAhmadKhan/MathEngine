@@ -85,19 +85,34 @@ function evaluateExpression(expr) {
     throw new Error('Invalid expression');
   }
 
-  if (typeof result !== 'number' || !isFinite(result)) {
-    throw new Error(result === Infinity ? 'Cannot divide by zero' : 'Invalid result');
+  if (typeof result !== 'number') {
+    throw new Error('Invalid result');
   }
 
   return result;
+}
+
+function formatResult(result) {
+  if (!Number.isFinite(result)) {
+    return 'Result too large';
+  }
+
+  const absResult = Math.abs(result);
+
+  if (absResult !== 0 && (absResult >= 1e9 || absResult < 1e-4)) {
+    return result.toExponential(2).replace('e+', ' x 10^').replace('e-', ' x 10^-');
+  }
+
+  return result.toFixed(4);
 }
 
 // working when click is pressed. 
 document.getElementById('equals-btn').addEventListener('click', () => {
   try {
     const result = evaluateExpression(input.value);
-    output.textContent = result.toFixed(4);   // "fixed to 4 decimal points"
-    addHistoryItem(input.value, result.toFixed(4));
+    const displayResult = formatResult(result);
+    output.textContent = displayResult;
+    addHistoryItem(input.value, displayResult);
   } catch (err) {
     output.textContent = 'Error: ' + err.message;
   }
