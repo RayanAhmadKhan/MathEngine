@@ -41,3 +41,26 @@ function preprocessExpression(expr) {
 
   return jsExpr;
 }
+
+function evaluateExpression(expr) {
+  const jsExpr = preprocessExpression(expr);
+
+  if (jsExpr === '') {
+    throw new Error('Expression is empty');
+  }
+
+  let result;
+  try {
+    
+    result = Function(`"use strict"; return (${jsExpr})`)();
+  } catch (err) {
+    throw new Error('Invalid expression');
+  }
+
+  if (typeof result !== 'number' || !isFinite(result)) {
+    throw new Error(result === Infinity ? 'Cannot divide by zero' : 'Invalid result');
+  }
+
+  return result;
+}
+
