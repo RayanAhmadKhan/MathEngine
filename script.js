@@ -5,6 +5,7 @@ const valueButtons = document.querySelectorAll('#buttons button[data-val]');
 
 const CONSTANTS = ['pi', 'e'];
 let userVariables = {}; 
+let history = [];
 
 document.getElementById('add-var-btn').addEventListener('click', () => {
   const name = document.getElementById('var-name').value.trim();
@@ -96,10 +97,39 @@ document.getElementById('equals-btn').addEventListener('click', () => {
   try {
     const result = evaluateExpression(input.value);
     output.textContent = result.toFixed(4);   // "fixed to 4 decimal points"
-    //addHistoryItem(input.value, result.toFixed(4));
+    addHistoryItem(input.value, result.toFixed(4));
   } catch (err) {
     output.textContent = 'Error: ' + err.message;
   }
 });
 
 
+//history management
+
+function addHistoryItem(expr, result) {
+  history.push({ expr, result, id: Date.now() });
+  renderHistory();
+}
+
+function renderHistory() {
+  const list = document.getElementById('history-list');
+  list.innerHTML = '';
+  history.forEach(item => {
+    const div = document.createElement('div');
+    div.textContent = `${item.expr} = ${item.result}`;
+    div.addEventListener('click', () => {
+      input.value = item.expr;
+    });
+
+    const delBtn = document.createElement('button');
+    delBtn.textContent = 'x';
+    delBtn.addEventListener('click', (e) => {
+      e.stopPropagation();   // prevents the click from also filling the input
+      history = history.filter(h => h.id !== item.id);
+      renderHistory();
+    });
+
+    div.appendChild(delBtn);
+    list.appendChild(div);
+  });
+}
