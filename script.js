@@ -1,8 +1,35 @@
 const input = document.getElementById('expr-input');
 const output = document.getElementById('output');
 
-
 const valueButtons = document.querySelectorAll('#buttons button[data-val]');
+
+const CONSTANTS = ['pi', 'e'];
+let userVariables = {}; 
+
+document.getElementById('add-var-btn').addEventListener('click', () => {
+  const name = document.getElementById('var-name').value.trim();
+  const value = parseFloat(document.getElementById('var-value').value);
+
+  if (CONSTANTS.includes(name)) {
+    alert(`"${name}" is a reserved constant name`);
+    return;
+  }
+  if (name === '' || isNaN(value)) {
+    alert('Enter a valid name and numeric value');
+    return;
+  }
+
+  userVariables[name] = value;
+  renderVariables();
+});
+
+function renderVariables() {
+  const list = document.getElementById('var-list');
+  list.innerHTML = '';
+  for (const name in userVariables) {
+    list.innerHTML += `<div>${name} = ${userVariables[name]}</div>`;
+  }
+}
 
 valueButtons.forEach(button => {
   button.addEventListener('click', () => {
@@ -63,4 +90,16 @@ function evaluateExpression(expr) {
 
   return result;
 }
+
+// working when click is pressed. 
+document.getElementById('equals-btn').addEventListener('click', () => {
+  try {
+    const result = evaluateExpression(input.value);
+    output.textContent = result.toFixed(4);   // "fixed to 4 decimal points"
+    //addHistoryItem(input.value, result.toFixed(4));
+  } catch (err) {
+    output.textContent = 'Error: ' + err.message;
+  }
+});
+
 
